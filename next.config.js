@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    domains: ['images.lojanike.com.br']
-  }
+  swcMinify: true
+  // images: {
+  //   loader: 'akamai',
+  //   path: ''
+  // }
 }
 
 module.exports = nextConfig
