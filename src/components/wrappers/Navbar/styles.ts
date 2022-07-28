@@ -11,6 +11,11 @@ const NavbarStyle = styled.nav`
 
   .logo {
     ${tw`relative w-10 h-10`}
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   span {

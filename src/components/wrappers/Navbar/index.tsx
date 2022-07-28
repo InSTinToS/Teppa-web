@@ -1,12 +1,11 @@
 import { NavbarStyle } from './styles'
 
-import Image from 'next/image'
 import { ReactElement } from 'react'
 
 const Navbar = () => (
   <NavbarStyle>
     <div className='logo'>
-      <Image src='/logo.png' layout='fill' alt='Logo' objectFit='contain' />
+      <img src='/logo.png' alt='Logo' />
     </div>
 
     <span>Teppa</span>

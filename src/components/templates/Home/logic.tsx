@@ -51,23 +51,23 @@ const formatUserInfo = (user: Partial<IUser>) => {
 }
 
 const useHome = () => {
-  const router = useRouter()
+  // const router = useRouter()
   const { user } = useAppSelector(({ userStore }) => userStore)
   const dispatch = useAppDispatch()
-  const { step: routeData } = router.query
-  const [initialStep, setInitialStep] = useState(1)
+  // const { step: routeData } = router.query
+  // const [initialStep, setInitialStep] = useState(1)
 
   const userInfo = user ? formatUserInfo(user) : undefined
 
-  useEffect(() => {
-    setInitialStep(Number(routeData ? routeData[0] : 1))
-  }, [routeData, initialStep])
+  // useEffect(() => {
+  //   setInitialStep(Number(routeData ? routeData[0] : 1))
+  // }, [routeData, initialStep])
 
   const onMultiStepFormSubmit = async (values: any) => {
     dispatch(registerThunk(values))
   }
 
-  return { onMultiStepFormSubmit, steps, initialStep, userInfo }
+  return { onMultiStepFormSubmit, steps, initialStep: 1, userInfo }
 }
 
 export { useHome }
