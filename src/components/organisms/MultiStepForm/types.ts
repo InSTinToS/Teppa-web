@@ -11,6 +11,7 @@ interface IStep {
 
 interface IUseMultiStepForm {
   steps: IStep[]
+  onSubmit: (values: any) => void
 }
 
 interface IMultiStepForm extends IUseMultiStepForm {}

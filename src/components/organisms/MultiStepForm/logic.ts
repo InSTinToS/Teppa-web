@@ -3,7 +3,7 @@ import { IUseMultiStepForm } from './types'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 
-const useMultiStepForm = ({ steps }: IUseMultiStepForm) => {
+const useMultiStepForm = ({ steps, onSubmit }: IUseMultiStepForm) => {
   const [step, setStep] = useState(1)
 
   const initialValues: any = {}
@@ -13,12 +13,7 @@ const useMultiStepForm = ({ steps }: IUseMultiStepForm) => {
       initialValues[steps[i].fields[j].name] = ''
   }
 
-  const formik = useFormik({
-    initialValues,
-    onSubmit: values => {
-      console.log(values)
-    }
-  })
+  const formik = useFormik({ initialValues, onSubmit })
 
   const labels = steps.map(({ label }) => label)
   const stepsData = steps.map(({ fields }) => fields)

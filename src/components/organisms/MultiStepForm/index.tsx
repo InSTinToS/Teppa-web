@@ -15,7 +15,7 @@ import {
 import { motion } from 'framer-motion'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
-const MultiStepForm = ({ steps }: IMultiStepForm) => {
+const MultiStepForm = ({ steps, onSubmit }: IMultiStepForm) => {
   const {
     step,
     formik,
@@ -25,7 +25,7 @@ const MultiStepForm = ({ steps }: IMultiStepForm) => {
     onArrowBackClick,
     showArrowForward,
     onArrowForwardClick
-  } = useMultiStepForm({ steps })
+  } = useMultiStepForm({ steps, onSubmit })
 
   return (
     <MultiStepFormStyle>
@@ -78,8 +78,8 @@ const MultiStepForm = ({ steps }: IMultiStepForm) => {
         <button
           type='button'
           onClick={() => {
-            if (showArrowForward) onArrowForwardClick
-            else formik.handleSubmit
+            if (showArrowForward) onArrowForwardClick()
+            else formik.handleSubmit()
           }}
         >
           {showArrowForward ? 'Próxima etapa' : 'Cadastrar!'}
