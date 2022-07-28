@@ -9,6 +9,10 @@
 }
 
 @layer utilities {
+  .h-screen-without-nav {
+    height: calc(100vh - theme('spacing.26'));
+  }
+
   .text-responsive-lg {
     font-size: clamp(
       1rem,

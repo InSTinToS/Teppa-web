@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import tw from 'twin.macro'
 
-const MultiStepFormStyle = styled.section`
-  ${tw`w-full overflow-hidden flex-1`}
+const MultiStepFormStyle = styled.div.attrs({
+  className: 'h-screen-without-nav'
+})`
+  ${tw`relative w-full overflow-x-hidden flex-1`}
 
   header {
     ${tw`grid w-full grid-cols-5 gap-y-4  bg-primary-500 text-secondary py-8 
@@ -34,11 +36,11 @@ const MultiStepFormStyle = styled.section`
   }
 
   form {
-    ${tw`flex w-full`}
+    ${tw`flex w-full  flex-col justify-between`}
 
     button {
-      ${tw`bg-primary-500 text-secondary py-4 fixed bottom-4 left-4 right-4 m-4
-        rounded`}
+      ${tw`bg-primary-500 text-secondary py-4 bottom-4 left-4 right-4 m-4
+        rounded absolute`}
 
       &:disabled {
         ${tw`border border-primary-500 bg-secondary text-primary-500`}
@@ -56,7 +58,7 @@ const MultiStepFormStyle = styled.section`
   }
 
   @media screen and (min-width: 1024px) {
-    ${tw`max-w-3xl shadow-2xl flex-none`}
+    ${tw`max-w-3xl shadow-2xl flex-none h-auto`}
 
     header {
       ${tw`rounded-t-xl`}

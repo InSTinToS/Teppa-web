@@ -1,18 +1,13 @@
 import type { IGlobalProviderProps } from './types'
 
-// import GlobalStyle from 'styles/index'
-import theme from 'styles/theme'
+import { store } from 'store'
 
-import { ThemeProvider } from 'styled-components'
+import { Provider as ReduxProvider } from 'react-redux'
 
 const GlobalProvider = ({ children }: IGlobalProviderProps) => (
-  <ThemeProvider theme={theme}>
-    <>
-      {/* <GlobalStyle /> */}
-
-      {children}
-    </>
-  </ThemeProvider>
+  <ReduxProvider store={store}>
+    <>{children}</>
+  </ReduxProvider>
 )
 
 export default GlobalProvider

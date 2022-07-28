@@ -1,6 +1,11 @@
 import type { IStep } from 'components/organisms/MultiStepForm/types'
 
-import api from 'api'
+import useAppDispatch from 'hooks/useAppDispatch'
+import useAppSelector from 'hooks/useAppSelector'
+
+import { registerThunk } from 'store/user/extraReducers/register'
+import { IUser } from 'store/user/types'
+
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -29,34 +34,40 @@ const steps: IStep[] = [
   }
 ]
 
+const formatUserInfo = (user: Partial<IUser>) => {
+  const fields: IStep['fields'] = steps.reduce(
+    (prev, curr) => [...prev, ...curr.fields] as any,
+    []
+  )
+
+  return Object.entries(user || {}).map(entry => {
+    const value = entry[1]
+
+    const keyLabel =
+      fields.find(field => field.name === entry[0])?.label || entry[0]
+
+    return [keyLabel, value]
+  })
+}
+
 const useHome = () => {
   const router = useRouter()
+  const { user } = useAppSelector(({ userStore }) => userStore)
+  const dispatch = useAppDispatch()
   const { step: routeData } = router.query
   const [initialStep, setInitialStep] = useState(1)
+
+  const userInfo = user ? formatUserInfo(user) : undefined
 
   useEffect(() => {
     setInitialStep(Number(routeData ? routeData[0] : 1))
   }, [routeData, initialStep])
 
   const onMultiStepFormSubmit = async (values: any) => {
-    try {
-      await api.post('/users', values)
-    } catch (error: any) {
-      const errorMessage = error.response?.data.error
-
-      if (errorMessage === 'E-mail already exists') {
-        const response = await api.get('/users')
-
-        const foundId = response.data.users.find(
-          (user: any) => user.email === values.email
-        ).id
-
-        await api.patch(`/users/${foundId}`, values)
-      }
-    }
+    dispatch(registerThunk(values))
   }
 
-  return { onMultiStepFormSubmit, steps, initialStep }
+  return { onMultiStepFormSubmit, steps, initialStep, userInfo }
 }
 
 export { useHome }
