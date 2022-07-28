@@ -8,7 +8,7 @@ import type { TNextPageWithLayout } from 'typescript/next.types'
 import Head from 'next/head'
 
 const Home: TNextPageWithLayout = () => {
-  const { onMultiStepFormSubmit, steps } = useHome()
+  const { onMultiStepFormSubmit, steps, initialStep } = useHome()
 
   return (
     <>
@@ -21,7 +21,12 @@ const Home: TNextPageWithLayout = () => {
       </Head>
 
       <HomeStyle>
-        <MultiStepForm steps={steps} onSubmit={onMultiStepFormSubmit} />
+        <MultiStepForm
+          steps={steps}
+          initialStep={initialStep}
+          sessionKey='signup-multistep'
+          onSubmit={onMultiStepFormSubmit}
+        />
       </HomeStyle>
     </>
   )

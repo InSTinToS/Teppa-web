@@ -1,7 +1,8 @@
 import { FormikProps } from 'formik'
-import type { HTMLProps } from 'react'
+import type { TextareaHTMLAttributes } from 'react'
 
-interface ITextareaProps extends HTMLProps<HTMLInputElement> {
+interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label?: string
   formik: FormikProps<any>
 }
 

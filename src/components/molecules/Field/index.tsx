@@ -1,12 +1,18 @@
 import { FieldStyle } from './styles'
 import type { IFieldProps } from './types'
 
-const Field = ({ name, label, formik }: IFieldProps) => (
+const Field = ({ name = '', label, formik, ...props }: IFieldProps) => (
   <FieldStyle className='Field'>
     <label htmlFor='full_name'>
       {label}
 
-      <input type='text' name={name} onChange={formik.handleChange(name)} />
+      <input
+        type='text'
+        name={name}
+        value={formik.values[name]}
+        onChange={formik.handleChange(name)}
+        {...props}
+      />
     </label>
   </FieldStyle>
 )

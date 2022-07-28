@@ -15,17 +15,23 @@ import {
 import { motion } from 'framer-motion'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
-const MultiStepForm = ({ steps, onSubmit }: IMultiStepForm) => {
+const MultiStepForm = ({
+  steps,
+  onSubmit,
+  sessionKey,
+  initialStep
+}: IMultiStepForm) => {
   const {
     step,
     formik,
     labels,
     stepsData,
+    onInputBlur,
     showArrowBack,
     onArrowBackClick,
     showArrowForward,
     onArrowForwardClick
-  } = useMultiStepForm({ steps, onSubmit })
+  } = useMultiStepForm({ steps, onSubmit, initialStep, sessionKey })
 
   return (
     <MultiStepFormStyle>
@@ -66,9 +72,16 @@ const MultiStepForm = ({ steps, onSubmit }: IMultiStepForm) => {
                     name={name}
                     label={label}
                     formik={formik}
+                    onBlur={onInputBlur}
                   />
                 ) : (
-                  <Field key={name} name={name} label={label} formik={formik} />
+                  <Field
+                    key={name}
+                    name={name}
+                    label={label}
+                    formik={formik}
+                    onBlur={onInputBlur}
+                  />
                 )
               )}
             </li>

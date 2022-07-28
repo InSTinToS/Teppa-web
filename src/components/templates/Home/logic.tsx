@@ -1,6 +1,8 @@
 import type { IStep } from 'components/organisms/MultiStepForm/types'
 
 import api from 'api'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const steps: IStep[] = [
   {
@@ -28,6 +30,14 @@ const steps: IStep[] = [
 ]
 
 const useHome = () => {
+  const router = useRouter()
+  const { step: routeData } = router.query
+  const [initialStep, setInitialStep] = useState(1)
+
+  useEffect(() => {
+    setInitialStep(Number(routeData ? routeData[0] : 1))
+  }, [routeData, initialStep])
+
   const onMultiStepFormSubmit = async (values: any) => {
     try {
       await api.post('/users', values)
@@ -46,7 +56,7 @@ const useHome = () => {
     }
   }
 
-  return { onMultiStepFormSubmit, steps }
+  return { onMultiStepFormSubmit, steps, initialStep }
 }
 
 export { useHome }
