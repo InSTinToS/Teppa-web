@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
@@ -32,6 +33,7 @@
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-styled-components": "^2.0.7",
     "babel-plugin-twin": "^1.0.2",
+    "cypress": "^10.3.1",
     "eslint": "^8.20.0",
     "eslint-config-next": "12.2.3",
     "eslint-plugin-react": "^7.30.1",

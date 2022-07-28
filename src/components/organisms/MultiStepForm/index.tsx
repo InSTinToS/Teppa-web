@@ -95,7 +95,7 @@ const MultiStepForm = ({
             else formik.handleSubmit()
           }}
         >
-          {showArrowForward ? 'Próxima etapa' : 'Cadastrar!'}
+          {showArrowForward ? 'Próxima etapa' : 'Cadastrar/Atualizar!'}
         </button>
       </form>
     </MultiStepFormStyle>
