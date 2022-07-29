@@ -29,8 +29,6 @@ const register = async (data: any) => {
     }
   }
 
-  console.log(user)
-
   return { loading: false, user }
 }
 

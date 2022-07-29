@@ -54,6 +54,7 @@ const useHome = () => {
   // const router = useRouter()
   const { user } = useAppSelector(({ userStore }) => userStore)
   const dispatch = useAppDispatch()
+
   // const { step: routeData } = router.query
   // const [initialStep, setInitialStep] = useState(1)
 
@@ -64,6 +65,7 @@ const useHome = () => {
   // }, [routeData, initialStep])
 
   const onMultiStepFormSubmit = async (values: any) => {
+    console.log(process.env.NEXT_PUBLIC_API_URL)
     dispatch(registerThunk(values))
   }
 
